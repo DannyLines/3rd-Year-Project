@@ -1,0 +1,2 @@
+HomeTeam,AwayTeam,MSH_result,home_GF,home_GA,home_GD,home_points,away_GF,away_GA,away_GD,away_points,MSH_home_sentiment,MSH_away_sentiment,MSH_home_goals,MSH_away_goals,MSH_home_pos,MSH_away_pos,MSH_home_attempts,MSH_away_attempts,MSH_home_target,MSH_away_target,MSH_home_acc,MSH_away_acc
+19,1,2,0.4,2.4,-2.0,0.0,2.25,1.75,0.5,2.25,0,0.39166666666666666,1.0,2.0,36.0,64.0,12.0,21.0,5.0,7.0,0.4166666666666667,0.3333333333333333

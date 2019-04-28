@@ -1,0 +1,4 @@
+This is not the full ocde base and will not run  if attempted to exceuted. 
+Entire project is > 600mb which github cant support/would take too long to uploade.
+
+Small sample of the most important code

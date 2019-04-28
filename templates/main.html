@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+    <link href="{{url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet">
+	<link href="{{url_for('static', filename='css/fa/css/all.css')}}"  rel="stylesheet" >
+	<link href="https://fonts.googleapis.com/css?family=Rajdhani:400,500,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container row" id="main-wrapper">
+
+		<div class="col-md-2" id="sidebar-wrapper">
+			<div id="sidebar">
+				<div class="container-fluid" id="logo-wrapper">
+					<img src="{{url_for('static', filename='Images/logo.png')}}" id="logo" ALT="logo">
+				</div>
+				<div class="sidebar-content-wrapper">
+					<ul>
+						<li id="top-wrapper">
+							<a class="sidebar-navbar-icons navbar-icons" id="top" href="#" onclick="showOverview()">
+								<i class="icons fas fa-home fa-md" id="top-icon"> </i>
+								<span class="sidebarTitles">Overview</span>
+							</a>
+						</li>
+						<li id="second-wrapper">
+							<a class="sidebar-navbar-icons navbar-icons" id="second" href="#" onclick="showStats()">
+								<i class="icons fas fa-chart-pie fa-md" id="second-icon"></i>
+								<span class="sidebarTitles">Stats</span>
+							</a>
+							<!--<a href="#">Overview</a>-->
+						</li>
+						<li id="third-wrapper">
+							<a class="sidebar-navbar-icons navbar-icons" id="third" href="#">
+								<i class="icons fas fa-star fa-md" id="third-icon"></i>
+								<span class="sidebarTitles">Ratings</span>
+							</a>
+							<!--<a href="#">Overview</a>-->
+						</li>
+						<li id="last-wrapper">
+							<a class="sidebar-navbar-icons navbar-icons" id="last" href="#">
+								<i class=" icons fas fa-question" id="last-icon"></i>
+								<span class="sidebarTitles">About</span>
+							</a>
+							<!--<a href="#">Overview</a>-->
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- LEGACY EXTEND SIDEBAR
+		<div id="sidebar-extend-wrapper">
+			<div id="title-container">
+				<a class="title-nav" id="top-nav" href="#">Overview</a>
+				<a class=" title-nav padded-nav" id="second-nav" href="#">Stats</a>
+				<a class=" title-nav padded-nav" id="third-nav" href="#">Ratings</a>
+				<a class=" title-nav padded-nav" id="last-nav" href="#">About</a>
+			</div>
+		</div>
+		-->
+      <div class="col-md-10" id="page-content-wrapper">
+        <div class="container-fluid">
+			<div class="container fluid" id="header">
+				<div class="header-info">
+					<h2 class="main-header-title">Overview</h2>
+				</div>
+			</div>
+        </div>
+		
+		<div class="container-fluid dashboard-content">
+			<div class="container-fluid statistics-dashboard-content" id="stats-dashboard" style="display: none;">
+				<div class="row">
+				<div class="col-md-4">
+						<div class="small-subheader-wrapper">
+							<span class="small-subheader">SENTIMENT PREDICTIONS</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="pure-sentiment-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="small-subheader-wrapper">
+							<span class="small-subheader">NAIVE ENGINE PREDICTIONS</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="winner-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="small-subheader-wrapper">
+							<span class="small-subheader">INTELLIGENT PREDICTIONS</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="sentiment-winner-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+				
+					<div class="col-md-4">
+						<div class="small-subheader-wrapper">
+							<span class="small-subheader">PREDICTION FROM LAST 5</span>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						<div class="small-subheader-wrapper">
+							<span class="small-subheader">SENTIMENT ANALYSIS</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="sentiment-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+					
+					<div class="col-md-4">
+						<div class="small-subheader-wrapper">
+							<span class="small-subheader">PLAYER APPRAISAL</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid team-select-content" id="overview-team-dashboard">
+				<div class="row">
+					<div class="col-md-4 team-wrappers team1-wrapper">
+						<img src="{{url_for('static', filename='Images/TeamLogos/questionMark.png')}}" class="teamLogos" id="team1Logo">
+						<span class="teamNames" id="team1-name">HomeTeam</span>
+					</div>
+					<div class="row col-md-4 vs-wrapper">
+						<div class="scoreboard-wrapper">
+							<span id="home-team-score-wrapper">-</span>
+							<span id="scoreboard-break-wrapper">:</span>
+							<span id="away-team-score-wrapper">-</span>
+						</div>
+						<div class="time-wrapper">
+							<div id="match-time-wrapper">
+								<span id = "match-time">Finished</span>
+							</div>
+						</div>
+						<form class="teamSelection" method="POST" action="/submitted">
+							<select class="teamForm" id="teamDropdownSelector" type="text" name="teamDropdown" placeholder="Select A Team">
+								<option value="" style="text-align = center" disabled selected>Select a game</option>
+							</select>
+						</form>
+					</div>
+					<div class="col-md-4 team-wrappers team2-wrapper">
+						<img src="{{url_for('static', filename='Images/TeamLogos/questionMark.png')}}" class="teamLogos" id="team2Logo">
+						<span class="teamNames" id="team2-name">AwayTeam</span>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="section-header-wrapper" id="sentiment-header-wrapper" style="display: none">
+				<span class="section-header">SENTIMENT AND PREDICTION HISTORY</span>
+			</div>
+			
+			<div class="container-fluid live" id="sentiment-graph-container" style="display: none">
+				<div class="row">
+					<div class="col-md-12" style="height: 300px">
+						<canvas class="quick-stats" id="sentiment-graph" width="100" height="00"></canvas>
+					</div>
+				</div>
+			</div>
+			
+			<div class="section-header-wrapper" id="overview-quick-stats-header">
+				<span class="section-header">Quick Stats</span>
+			</div>
+			<div class="container-fluid live" id="quick-stats-container">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="quick-stat-subsection-header-wrapper">
+							<span class="quick-stat-subsection-header">POSESSION</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="possession-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="quick-stat-subsection-header-wrapper">
+							<span class="quick-stat-subsection-header">GOAL ATTEMPTS</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="shots-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="quick-stat-subsection-header-wrapper">
+							<span class="quick-stat-subsection-header">PASSES COMPLETED</span>
+						</div>
+						<div class="stat-wrapper">
+							<canvas class="quick-stats" id="passes-stat" width="100" height="100"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section-header-wrapper" id="overview-latest-updates-header">
+				<span class="section-header">Latest Updates</span>
+			</div>
+			<div class="container-fluid live" id="live-update-container">
+			</div>
+      </div>
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/bootstrap.js')}}"></script>
+	<script src="{{url_for('static', filename='js/chart.js')}}"></script>
+  </body>
+</html>

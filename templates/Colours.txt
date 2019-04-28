@@ -1,0 +1,3 @@
+Vivid Turqoise: #078A82
+Vivid pink: #F5003F
+Dark grey: #242424
